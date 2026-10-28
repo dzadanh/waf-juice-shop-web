@@ -1,0 +1,21 @@
+services:
+  web:
+    image: bkimminich/juice-shop
+    ports:
+      - "127.0.0.1:3000:3000"
+    restart: unless-stopped
+
+  waf:
+    image: owasp/modsecurity-crs:nginx
+    ports:
+      - "127.0.0.1:8080:8080"
+    depends_on:
+      - web
+    restart: unless-stopped
+    environment:
+      BACKEND: "http://web:3000"
+      MODSEC_RULE_ENGINE: "On"
+      BLOCKING_PARANOIA: "1"
+      MODSEC_REQ_BODY_ACCESS: "On"
+      MODSEC_AUDIT_ENGINE: "RelevantOnly"
+      MODSEC_AUDIT_LOG: "/dev/stdout"

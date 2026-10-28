@@ -1,0 +1,1 @@
+Xây dựng WAF bằng Nginx, ModSecurity và OWASP CRS để bảo vệ OWASP Juice Shop. So sánh kết quả khi gửi cùng một payload SQL Injection trực tiếp tới ứng dụng và khi gửi qua WAF. Đồng thời kiểm tra đăng nhập hợp lệ vẫn hoạt động.
